@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+
+.form {
+  margin-top: 5rem;
+  display: block;
+}
+
+input {
+  display: block;
+}

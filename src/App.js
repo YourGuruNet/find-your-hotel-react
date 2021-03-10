@@ -2,19 +2,7 @@ import React from 'react';
 import './App.css';
 import axios from 'axios';
 
-// const addNewItem = (newItem) => {
-//   axios.post('https://localhost:5001/api/TodoItems', newItem);
-// };
-
-// const App = () => {
-//   const [items, setItems] = useState([]);
-
-//   useEffect(() => {
-//     axios.get('https://localhost:5001/api/TodoItems').then((response) => {
-//       console.log(response);
-//       setItems(response.data);
-//     });
-//   });
+const apiName = 'https://localhost:5001/api/TodoItems';
 
 class App extends React.Component {
   constructor(props) {
@@ -45,7 +33,7 @@ class App extends React.Component {
   //When press submit button send new item to database
   handleSubmit(event) {
     let newItem = this.state.value;
-    axios.post('https://localhost:5001/api/TodoItems/', newItem);
+    axios.post(apiName, newItem);
     this.setState({
       items: [...this.state.items, newItem],
     });
@@ -54,10 +42,17 @@ class App extends React.Component {
 
   //Get all items from database when app starts
   componentDidMount() {
-    axios.get('https://localhost:5001/api/TodoItems').then((response) => {
+    axios.get(apiName).then((response) => {
       this.setState({
         items: response.data,
       });
+    });
+  }
+
+  deleteItem(id) {
+    axios.delete(`${apiName}/${id}`).then((response) => {
+      // this.setState({
+      // });
     });
   }
 
@@ -76,7 +71,14 @@ class App extends React.Component {
           </form>
           <ul>
             {this.state.items.map((value, id) => {
-              return <p key={id}>{value.name}</p>;
+              return (
+                <div>
+                  <p key={id}>{value.name}</p>{' '}
+                  <button onClick={() => this.deleteItem(value.id)}>
+                    delete
+                  </button>
+                </div>
+              );
             })}
           </ul>
         </header>
