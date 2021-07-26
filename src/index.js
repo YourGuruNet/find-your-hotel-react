@@ -1,12 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import App from './app/layout/App';
 import reportWebVitals from './reportWebVitals';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import thunk from 'redux-thunk';
+import { Provider } from 'react-redux';
+import { PlacesReducer } from './components/places/reducer/PlacesReducer';
+
+const middleware = [thunk];
+const store = createStore(
+  combineReducers({
+    Places: PlacesReducer,
+  }),
+  composeWithDevTools(applyMiddleware(...middleware))
+);
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+   <Provider store={store}>
+      <App />
+  </Provider>,
   </React.StrictMode>,
   document.getElementById('root')
 );
