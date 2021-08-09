@@ -20,6 +20,8 @@ class App extends React.Component {
 }
 
 const Layout = styled.div`
+  width: 100vw;
+  height: 50vh;
   font-size: 4rem;
   background-color: ${(props) => props.theme.fontColor_Dark};
 `;
