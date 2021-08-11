@@ -5,20 +5,21 @@ import GoogleMapWrapper from "../components/GoogleMap/GoogleMapWrapper";
 import { getAddedPlaces } from "../components/CoffeePlaces/reducer/PlacesActions";
 
 const Home = (props) => {
-  const { getAddedPlaces, addedPlaces } = props;
+  const { getAddedPlaces, placesList } = props;
+  console.log(props);
   useEffect(() => {
     getAddedPlaces();
   }, [getAddedPlaces]);
 
   return (
     <Layout>
-      <GoogleMapWrapper itemsToShow={addedPlaces} />
+      {placesList && <GoogleMapWrapper itemsToShow={placesList} />}
     </Layout>
   );
 };
 
-const mapStateToProps = ({ addedPlaces }) => {
-  return { addedPlaces };
+const mapStateToProps = ({ CoffeePlaces: { placesList } }) => {
+  return { placesList };
 };
 
 const mapDispatchToProps = (dispatch) => {
