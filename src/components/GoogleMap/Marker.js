@@ -1,25 +1,49 @@
 import React from "react";
-import { InfoWindow } from "@react-google-maps/api";
+import styled from "styled-components";
 
-const onLoad = (infoWindow) => {
-  console.log("infoWindow: ", infoWindow);
-};
-
-const divStyle = {
-  background: `white`,
-  border: `1px solid #ccc`,
-  padding: 15,
-};
 const Marker = (props) => {
-  const { title, latitude, longitude } = props.item;
-  const position = { lat: parseFloat(latitude), lng: parseFloat(longitude) };
+  const { title, logo } = props.item;
   return (
-    <InfoWindow onLoad={onLoad} position={position}>
-      <div style={divStyle}>
-        <h1>{title}</h1>
+    <MarkerWrapper>
+      <div className="marker_figure">
+        <img className="marker_logo" src={logo} alt={title} />
+        <div className="arrow_down" />
       </div>
-    </InfoWindow>
+    </MarkerWrapper>
   );
 };
 
 export default Marker;
+
+const MarkerWrapper = styled.div`
+  width: ${(props) => props.theme.remMixin(55)};
+  height: ${(props) => props.theme.remMixin(55)};
+  /* Important to get marker in place when zoom 
+  https://github.com/google-map-react/google-map-react/issues/854#issuecomment-614167739
+  */
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background-color: ${(props) => props.theme.dark_color};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: ${(props) => props.theme.remMixin(-8)};
+  left: 0;
+  :after {
+    position: absolute;
+    content: "";
+    width: 0px;
+    height: 0px;
+    bottom: ${(props) => props.theme.remMixin(-22)};
+    border: ${(props) => props.theme.remMixin(10)} solid transparent;
+    border-top: ${(props) => props.theme.remMixin(17)} solid
+      ${(props) => props.theme.dark_color};
+  }
+  .marker_logo {
+    width: ${(props) => props.theme.remMixin(50)};
+    height: ${(props) => props.theme.remMixin(50)};
+    border-radius: 50%;
+    object-fit: cover;
+  }
+`;

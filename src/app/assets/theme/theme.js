@@ -4,6 +4,7 @@ const theme = {
 
   // colors
   fontColor_Dark: "#7E7E7E",
+  dark_color: "black",
 
   // screen breakpoints
   screenMob_600: "600px",
