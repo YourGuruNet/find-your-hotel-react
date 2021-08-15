@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 import GoogleMapWrapper from "../components/GoogleMap/GoogleMapWrapper";
 import { getAddedPlaces } from "../components/CoffeePlaces/reducer/PlacesActions";
+import FeaturedCard from "../components/FeaturedCard";
 
 const Home = (props) => {
   const { getAddedPlaces, placesList } = props;
@@ -14,6 +15,7 @@ const Home = (props) => {
   return (
     <Layout>
       {placesList && <GoogleMapWrapper itemsToShow={placesList} />}
+      <FeaturedCard />
     </Layout>
   );
 };
@@ -33,6 +35,5 @@ export default connect(mapStateToProps, mapDispatchToProps)(Home);
 const Layout = styled.div`
   width: 100%;
   height: 100vh;
-  font-size: 4rem;
   background-color: ${(props) => props.theme.fontColor_Dark};
 `;
