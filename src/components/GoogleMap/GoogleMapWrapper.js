@@ -1,17 +1,16 @@
 import React from "react";
 import GoogleMapReact from "google-map-react";
-import { GOOGLE_MAP_API } from "../../app/api/api_keys";
 import styled from "styled-components";
-
 import { center } from "../../app/constants/constants";
 import Marker from "./Marker";
+import { GOOGLE_MAPS_API_KEY } from "../../app/api/api";
 
 const GoogleMapWrapper = (props) => {
   const { itemsToShow } = props;
   return (
     <MapsWrapper>
       <GoogleMapReact
-        bootstrapURLKeys={{ key: GOOGLE_MAP_API }}
+        bootstrapURLKeys={{ key: GOOGLE_MAPS_API_KEY }}
         defaultCenter={center.center}
         defaultZoom={center.zoom}>
         {itemsToShow.map((item, i) => {

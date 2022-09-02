@@ -5,3 +5,12 @@ export const center = {
   },
   zoom: 11,
 };
+
+export const THEMES = {
+  LIGHT: "light",
+  DARK: "dark",
+};
+
+export const LOCAL_STORAGE = {
+  THEME: "theme",
+};

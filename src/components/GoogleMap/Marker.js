@@ -23,7 +23,7 @@ const MarkerWrapper = styled.div`
   */
   transform: translate(-50%, -50%);
   border-radius: 50%;
-  background-color: ${(props) => props.theme.dark_color};
+  background-color: ${(props) => props.theme.body};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -38,7 +38,7 @@ const MarkerWrapper = styled.div`
     bottom: ${(props) => props.theme.remMixin(-22)};
     border: ${(props) => props.theme.remMixin(10)} solid transparent;
     border-top: ${(props) => props.theme.remMixin(17)} solid
-      ${(props) => props.theme.dark_color};
+      ${(props) => props.theme.body};
   }
   .marker_logo {
     width: ${(props) => props.theme.remMixin(50)};

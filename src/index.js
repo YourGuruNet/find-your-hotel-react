@@ -1,24 +1,22 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./app/layout/App";
+import App from "./app/App";
 import reportWebVitals from "./reportWebVitals";
-import { createStore, combineReducers, applyMiddleware } from "redux";
-import { composeWithDevTools } from "redux-devtools-extension";
+import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { Provider } from "react-redux";
-import { CoffeePlacesReducer } from "./components/CoffeePlaces/reducer/CoffeePlacesReducer";
+import { appReducer } from "./modules/rootReducer";
+import { composeWithDevTools } from "redux-devtools-extension";
 
 const middleware = [thunk];
-const store = createStore(
-  combineReducers({
-    CoffeePlaces: CoffeePlacesReducer,
-  }),
+const reduxStore = createStore(
+  appReducer,
   composeWithDevTools(applyMiddleware(...middleware))
 );
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
+    <Provider store={reduxStore}>
       <App />
     </Provider>
   </React.StrictMode>,

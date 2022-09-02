@@ -1,39 +1,30 @@
 import React, { useEffect } from "react";
-import styled from "styled-components";
 import { connect } from "react-redux";
 import GoogleMapWrapper from "../components/GoogleMap/GoogleMapWrapper";
-import { getAddedPlaces } from "../components/CoffeePlaces/reducer/PlacesActions";
-import FeaturedCard from "../components/FeaturedCard";
+import { getHotelList } from "../modules/hotels/actions";
+import Layout from "../components/Layout";
 
 const Home = (props) => {
-  const { getAddedPlaces, placesList } = props;
-  console.log(props);
+  const { getHotelList, hotelsList } = props;
   useEffect(() => {
-    getAddedPlaces();
-  }, [getAddedPlaces]);
+    getHotelList();
+  }, [getHotelList]);
 
   return (
     <Layout>
-      {placesList && <GoogleMapWrapper itemsToShow={placesList} />}
-      <FeaturedCard />
+      {hotelsList && <GoogleMapWrapper itemsToShow={hotelsList} />}
     </Layout>
   );
 };
 
-const mapStateToProps = ({ CoffeePlaces: { placesList } }) => {
-  return { placesList };
-};
+const mapStateToProps = (state) => ({
+  hotelsList: state.hotel.hotelsList,
+});
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getAddedPlaces: () => dispatch(getAddedPlaces()),
+    getHotelList: () => dispatch(getHotelList()),
   };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
-
-const Layout = styled.div`
-  width: 100%;
-  height: 100vh;
-  background-color: ${(props) => props.theme.fontColor_Dark};
-`;
