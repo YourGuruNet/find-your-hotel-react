@@ -18,7 +18,6 @@ export const GlobalStyles = createGlobalStyle`
 
   body {
     font-family: "Roboto", sans-serif;
-    transition: all 0.50s linear;
     margin: 0 auto;
   }
   `;

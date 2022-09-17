@@ -35,5 +35,5 @@ const MapsWrapper = styled.div`
   min-height: 65vh;
   overflow: hidden;
   border-radius: 2rem;
-  border: solid 1px ${(props) => props.theme.fontColor_Dark};
+  border: solid 1px ${({ theme }) => theme.text};
 `;
