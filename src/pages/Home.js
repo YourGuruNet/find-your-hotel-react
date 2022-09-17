@@ -1,30 +1,13 @@
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
-import GoogleMapWrapper from "../components/GoogleMap/GoogleMapWrapper";
-import { getHotelList } from "../modules/hotels/actions";
+import React from "react";
 import Layout from "../components/Layout";
+import SearchSection from "../components/SearchSection/SearchSection";
 
-const Home = (props) => {
-  const { getHotelList, hotelsList } = props;
-  useEffect(() => {
-    getHotelList();
-  }, [getHotelList]);
-
+const Home = () => {
   return (
     <Layout>
-      {hotelsList && <GoogleMapWrapper itemsToShow={hotelsList} />}
+      <SearchSection />
     </Layout>
   );
 };
 
-const mapStateToProps = (state) => ({
-  hotelsList: state.hotel.hotelsList,
-});
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    getHotelList: () => dispatch(getHotelList()),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default Home;

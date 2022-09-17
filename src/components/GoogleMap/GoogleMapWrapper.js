@@ -32,6 +32,8 @@ export default GoogleMapWrapper;
 
 const MapsWrapper = styled.div`
   width: 100%;
-  height: 65vh;
-  background-color: ${(props) => props.theme.fontColor_Dark};
+  min-height: 65vh;
+  overflow: hidden;
+  border-radius: 2rem;
+  border: solid 1px ${(props) => props.theme.fontColor_Dark};
 `;

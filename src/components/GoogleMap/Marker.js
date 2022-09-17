@@ -16,11 +16,14 @@ const Marker = (props) => {
 export default Marker;
 
 const MarkerWrapper = styled.div`
-  width: ${(props) => props.theme.remMixin(55)};
-  height: ${(props) => props.theme.remMixin(55)};
+  width: 6rem;
+  height: 6rem;
   /* Important to get marker in place when zoom 
   https://github.com/google-map-react/google-map-react/issues/854#issuecomment-614167739
   */
+  /* Bottom make a game for correct position
+  */
+  bottom: -1.7rem;
   transform: translate(-50%, -50%);
   border-radius: 50%;
   background-color: ${(props) => props.theme.body};
@@ -28,21 +31,19 @@ const MarkerWrapper = styled.div`
   justify-content: center;
   align-items: center;
   position: absolute;
-  bottom: ${(props) => props.theme.remMixin(-8)};
   left: 0;
   :after {
     position: absolute;
     content: "";
     width: 0px;
     height: 0px;
-    bottom: ${(props) => props.theme.remMixin(-22)};
-    border: ${(props) => props.theme.remMixin(10)} solid transparent;
-    border-top: ${(props) => props.theme.remMixin(17)} solid
-      ${(props) => props.theme.body};
+    bottom: -2rem;
+    border: 1rem solid transparent;
+    border-top: 1.7rem solid ${(props) => props.theme.body};
   }
   .marker_logo {
-    width: ${(props) => props.theme.remMixin(50)};
-    height: ${(props) => props.theme.remMixin(50)};
+    width: 5rem;
+    height: 5rem;
     border-radius: 50%;
     object-fit: cover;
   }

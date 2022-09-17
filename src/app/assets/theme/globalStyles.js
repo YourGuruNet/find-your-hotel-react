@@ -17,11 +17,6 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    background: ${({ theme }) => theme.body};
-    color: ${({ theme }) => theme.text};
-    min-height: 100vh;
-    width: 100%;
-    max-width: 140rem;
     font-family: "Roboto", sans-serif;
     transition: all 0.50s linear;
     margin: 0 auto;
