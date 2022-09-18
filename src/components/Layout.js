@@ -13,7 +13,6 @@ const Layout = (props) => {
 
   useEffect(() => {
     const localTheme = window.localStorage.getItem(LOCAL_STORAGE.THEME);
-    debugger;
     localTheme && updateLayoutTheme(THEMES.DARK);
   }, []);
 
