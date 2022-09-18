@@ -1,8 +1,9 @@
 import React from "react";
 import { SearchListWrapper } from "./SearchList.styles";
 
-const SearchList = () => {
-  return <SearchListWrapper>SearchList</SearchListWrapper>;
+const SearchList = (props) => {
+  const { hotelsList } = props;
+  return <SearchListWrapper>{map}</SearchListWrapper>;
 };
 
 export default SearchList;

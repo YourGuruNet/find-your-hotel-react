@@ -5,22 +5,24 @@ import { darkTheme } from "../app/assets/theme/darkTheme";
 import { GlobalStyles } from "../app/assets/theme/globalStyles";
 import { lightTheme } from "../app/assets/theme/lightTheme";
 import styled from "styled-components";
+import { connect } from "react-redux";
+import { setLayoutTheme } from "../modules/user/actions";
 
 const Layout = (props) => {
-  const { children } = props;
-  const [theme, setTheme] = useState(THEMES.LIGHT);
+  const { children, layoutTheme, updateLayoutTheme } = props;
 
   useEffect(() => {
     const localTheme = window.localStorage.getItem(LOCAL_STORAGE.THEME);
-    localTheme && setTheme(localTheme);
+    debugger;
+    localTheme && updateLayoutTheme(THEMES.DARK);
   }, []);
 
   const themeToggler = () => {
-    const mode = theme === THEMES.LIGHT ? THEMES.DARK : THEMES.LIGHT;
-    setTheme(mode);
+    const mode = layoutTheme === THEMES.LIGHT ? THEMES.DARK : THEMES.LIGHT;
+    setLayoutTheme(mode);
     window.localStorage.setItem(LOCAL_STORAGE.THEME, mode);
   };
-  const themeMode = theme === THEMES.LIGHT ? lightTheme : darkTheme;
+  const themeMode = layoutTheme === THEMES.DARK ? darkTheme : lightTheme;
   return (
     <ThemeProvider theme={themeMode}>
       <LayoutWrapper>
@@ -31,7 +33,17 @@ const Layout = (props) => {
   );
 };
 
-export default Layout;
+const mapStateToProps = (state) => ({
+  layoutTheme: state.user.preferences.layoutTheme,
+});
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateLayoutTheme: (theme) => dispatch(setLayoutTheme(theme)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Layout);
 
 const LayoutWrapper = styled.div`
   transition: all 0.5s linear;

@@ -13,8 +13,8 @@ const SearchSection = (props) => {
 
   return (
     <SearchSectionLayout>
-      <SearchList />
-      {hotelsList && <GoogleMapWrapper itemsToShow={hotelsList} />}
+      <SearchList hotelsList={hotelsList} />
+      <GoogleMapWrapper itemsToShow={hotelsList} />
     </SearchSectionLayout>
   );
 };
