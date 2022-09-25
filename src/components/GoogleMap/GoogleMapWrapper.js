@@ -30,8 +30,8 @@ const GoogleMapWrapper = (props) => {
             <Marker
               key={i}
               item={item}
-              lat={parseFloat(item.latitude)}
-              lng={parseFloat(item.longitude)}
+              lat={item.location.geoPoint.latitude}
+              lng={item.location.geoPoint.longitude}
             />
           );
         })}

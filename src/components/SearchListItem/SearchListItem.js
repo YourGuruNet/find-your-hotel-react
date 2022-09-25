@@ -8,7 +8,7 @@ const SearchListItem = (props) => {
   const { hotel } = props;
   return (
     <SearchListItemWrapper>
-      <SearchItemImage src={hotel.pictureUrl} />
+      <SearchItemImage src={hotel?.images?.mainPicture} />
       {hotel.title}
     </SearchListItemWrapper>
   );

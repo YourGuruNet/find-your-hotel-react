@@ -14,10 +14,11 @@ export const GlobalStyles = createGlobalStyle`
   html {
     font-size: 62.5%;
     box-sizing: border-box;
+    margin: 0 auto;
   }
 
   body {
     font-family: "Roboto", sans-serif;
-    margin: 0 auto;
+    background-color: ${(props) => props.theme.body};
   }
   `;
