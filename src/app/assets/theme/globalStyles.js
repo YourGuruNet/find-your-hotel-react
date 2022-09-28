@@ -20,5 +20,9 @@ export const GlobalStyles = createGlobalStyle`
   body {
     font-family: "Roboto", sans-serif;
     background-color: ${(props) => props.theme.body};
+    color: ${(props) => props.theme.text};
+    button {
+      cursor: pointer;
+    }
   }
   `;

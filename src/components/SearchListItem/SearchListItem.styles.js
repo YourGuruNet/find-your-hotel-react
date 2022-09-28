@@ -17,3 +17,41 @@ export const SearchItemImage = styled.img`
   object-fit: cover;
   margin-right: 2.3rem;
 `;
+
+export const SearchItemTitle = styled.h2`
+  font-size: 2.4rem;
+  font-weight: 500;
+  line-height: 2.8rem;
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const TextColumn = styled.div`
+  max-width: 40rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+`;
+
+export const SearchItemAddress = styled.p`
+  padding-top: 0.5rem;
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 1.9rem;
+  span {
+    padding-right: 0.4rem;
+  }
+`;
+
+export const SearchItemFilters = styled.p`
+  padding-top: 1rem;
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 2.4rem;
+  color: ${({ theme }) => theme.secondaryText};
+`;
+
+export const FavoriteButtonsContainer = styled.div`
+  position: absolute;
+  right: -5.5rem;
+`;
