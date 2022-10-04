@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const SearchListItemWrapper = styled.section`
   display: flex;
@@ -18,6 +18,13 @@ export const SearchItemImage = styled.img`
   margin-right: 2.3rem;
 `;
 
+export const SearchItemImageSkeleton = styled.div`
+  width: 20rem;
+  border-radius: 1rem;
+  margin-right: 2.3rem;
+  overflow: hidden;
+`;
+
 export const SearchItemTitle = styled.h2`
   font-size: 2.4rem;
   font-weight: 500;
@@ -27,14 +34,15 @@ export const SearchItemTitle = styled.h2`
 `;
 
 export const TextColumn = styled.div`
-  max-width: 40rem;
+  width: 100%;
+  max-width: 39rem;
   display: flex;
   flex-direction: column;
   position: relative;
+  justify-content: space-between;
 `;
 
 export const SearchItemAddress = styled.p`
-  padding-top: 0.5rem;
   font-size: 1.6rem;
   font-weight: 400;
   line-height: 1.9rem;
@@ -44,7 +52,6 @@ export const SearchItemAddress = styled.p`
 `;
 
 export const SearchItemFilters = styled.p`
-  padding-top: 1rem;
   font-size: 1.6rem;
   font-weight: 400;
   line-height: 2.4rem;
@@ -53,5 +60,64 @@ export const SearchItemFilters = styled.p`
 
 export const FavoriteButtonsContainer = styled.div`
   position: absolute;
+  right: 3rem;
+  top: 2.5rem;
+`;
+
+export const LabelsRow = styled.section`
+  display: flex;
+  flex-direction: row;
+`;
+
+export const LabelItem = styled.p`
+  margin-right: 1rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1.3rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  background: ${({ theme }) => theme.lightRed};
+  color: ${({ theme }) => theme.darkRed};
+
+  ${(props) =>
+    props.label === "Friendly Neighborhood" &&
+    css`
+      background: ${({ theme }) => theme.lightBlue};
+      color: ${({ theme }) => theme.darkBlue};
+    `}
+
+  ${(props) =>
+    props.label === "New Building" &&
+    css`
+      background: ${({ theme }) => theme.lightGreen};
+      color: ${({ theme }) => theme.darkGreen};
+    `}
+`;
+
+export const LabelItemSkeleton = styled.div`
+  margin-right: 1rem;
+  width: 10rem;
+  font-size: 3rem;
+  border-radius: 1rem;
+  overflow: hidden;
+`;
+
+export const FavoriteIconSkeleton = styled.div`
+  overflow: hidden;
+  border-radius: 100%;
+`;
+
+export const Price = styled.h2`
+  font-size: 2.4rem;
+  font-weight: 700;
+  line-height: 2.8rem;
+  position: absolute;
   right: -5.5rem;
+  bottom: 0;
+`;
+
+export const PriceSkeleton = styled.div`
+  position: absolute;
+  right: -6.7rem;
+  bottom: 0;
 `;

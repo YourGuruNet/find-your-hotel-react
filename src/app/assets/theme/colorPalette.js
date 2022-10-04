@@ -8,4 +8,10 @@ export const colorPalette = {
   darkGray_2: "#F4F7FF20",
   darkGray_3: "#202531",
   black: "#1C1F2A",
+  darkBlue: "#2B67F6",
+  lightBlue: "#2B68F647",
+  darkGreen: "#27AE60",
+  lightGreen: "#27AE5F62",
+  darkRed: "#EB5757",
+  lightRed: "#EB575756",
 };
