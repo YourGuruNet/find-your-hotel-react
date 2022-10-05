@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import GoogleMapReact from "google-map-react";
 import styled from "styled-components";
 import { center, THEMES } from "../../app/constants/constants";
@@ -11,8 +11,8 @@ import SkeletonLayout from "../SkeletonLayout";
 
 const GoogleMapWrapper = (props) => {
   const { itemsToShow, layoutTheme } = props;
-  const [, updateState] = React.useState();
-  const forceUpdate = React.useCallback(() => updateState({}), []);
+  const [, updateState] = useState();
+  const forceUpdate = useCallback(() => updateState({}), []);
 
   useEffect(() => {
     forceUpdate();

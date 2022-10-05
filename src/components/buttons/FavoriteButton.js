@@ -1,12 +1,15 @@
 import React from "react";
 import FavoriteIcon from "../../app/assets/svg/FavoriteIcon";
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
 const FavoriteButton = () => {
   return (
-    <FavoriteButtonWrapper>
-      <FavoriteIcon width={2.4} height={2.2} />
-    </FavoriteButtonWrapper>
+    <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+      <FavoriteButtonWrapper>
+        <FavoriteIcon width={2.4} height={2.2} />
+      </FavoriteButtonWrapper>
+    </motion.div>
   );
 };
 
@@ -23,8 +26,4 @@ export const FavoriteButtonWrapper = styled.button`
   border: none;
   width: 5rem;
   height: 5rem;
-
-  :hover {
-    background-color: ${({ theme }) => theme.text};
-  }
 `;
