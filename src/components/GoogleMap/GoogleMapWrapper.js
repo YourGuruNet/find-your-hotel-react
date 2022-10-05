@@ -6,6 +6,8 @@ import Marker from "./Marker";
 import { GOOGLE_MAPS_API_KEY } from "../../app/api/api";
 import { connect } from "react-redux";
 import { mapsThemeDark } from "../../app/assets/theme/mapsTheme";
+import Skeleton from "react-loading-skeleton";
+import SkeletonLayout from "../SkeletonLayout";
 
 const GoogleMapWrapper = (props) => {
   const { itemsToShow, layoutTheme } = props;
@@ -18,24 +20,31 @@ const GoogleMapWrapper = (props) => {
 
   return (
     <MapsWrapper>
-      <GoogleMapReact
-        options={{
-          styles: layoutTheme === THEMES.DARK && mapsThemeDark,
-        }}
-        bootstrapURLKeys={{ key: GOOGLE_MAPS_API_KEY }}
-        defaultCenter={center.center}
-        defaultZoom={center.zoom}>
-        {itemsToShow.map((item, i) => {
-          return (
-            <Marker
-              key={i}
-              item={item}
-              lat={item.location.geoPoint.latitude}
-              lng={item.location.geoPoint.longitude}
-            />
-          );
-        })}
-      </GoogleMapReact>
+      {itemsToShow.length > 0 && (
+        <GoogleMapReact
+          options={{
+            styles: layoutTheme === THEMES.DARK && mapsThemeDark,
+          }}
+          bootstrapURLKeys={{ key: GOOGLE_MAPS_API_KEY }}
+          defaultCenter={center.center}
+          defaultZoom={center.zoom}>
+          {itemsToShow.map((item, i) => {
+            return (
+              <Marker
+                key={i}
+                item={item}
+                lat={item.location.geoPoint.latitude}
+                lng={item.location.geoPoint.longitude}
+              />
+            );
+          })}
+        </GoogleMapReact>
+      )}
+      {!itemsToShow.length && (
+        <SkeletonLayout>
+          <Skeleton wrapper={MapsWrapperSkeleton} height={620} />
+        </SkeletonLayout>
+      )}
     </MapsWrapper>
   );
 };
@@ -49,7 +58,11 @@ export default connect(mapStateToProps, null)(GoogleMapWrapper);
 const MapsWrapper = styled.div`
   width: 100%;
   min-height: 65vh;
+  max-height: 65vh;
   overflow: hidden;
   border-radius: 2rem;
-  border: solid 1px ${({ theme }) => theme.text};
+`;
+const MapsWrapperSkeleton = styled.div`
+  overflow: hidden;
+  border-radius: 2rem;
 `;

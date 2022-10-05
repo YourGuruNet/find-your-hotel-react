@@ -13,15 +13,13 @@ import {
   TextColumn,
 } from "./SearchListItem.styles";
 import { map } from "lodash";
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import { colorPalette } from "../../app/assets/theme/colorPalette";
+import SkeletonLayout from "../SkeletonLayout";
 
 const SearchListItemSkeleton = () => {
   return (
-    <SkeletonTheme
-      baseColor={colorPalette.black}
-      highlightColor={colorPalette.darkGray_3}>
+    <SkeletonLayout>
       <SearchListItemWrapper>
         <Skeleton height={180} wrapper={SearchItemImageSkeleton} />
         <FavoriteButtonsContainer>
@@ -42,7 +40,7 @@ const SearchListItemSkeleton = () => {
           <Skeleton width={50} height={30} wrapper={PriceSkeleton} />
         </TextColumn>
       </SearchListItemWrapper>
-    </SkeletonTheme>
+    </SkeletonLayout>
   );
 };
 
