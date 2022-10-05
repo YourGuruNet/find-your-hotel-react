@@ -12,12 +12,22 @@ import SkeletonLayout from "../SkeletonLayout";
 const GoogleMapWrapper = (props) => {
   const { itemsToShow, layoutTheme } = props;
   const [, updateState] = useState();
+  const [userPosition, setUserPosition] = useState(null);
   const forceUpdate = useCallback(() => updateState({}), []);
 
   useEffect(() => {
     forceUpdate();
   }, [layoutTheme]);
 
+  const apiIsLoaded = (map, maps) => {
+    navigator?.geolocation.getCurrentPosition(
+      ({ coords: { latitude: lat, longitude: lng } }) => {
+        const pos = { lat, lng };
+        setUserPosition(pos);
+      }
+    );
+  };
+  console.log(userPosition);
   return (
     <MapsWrapper>
       {itemsToShow.length > 0 && (
@@ -27,7 +37,13 @@ const GoogleMapWrapper = (props) => {
           }}
           bootstrapURLKeys={{ key: GOOGLE_MAPS_API_KEY }}
           defaultCenter={center.center}
-          defaultZoom={center.zoom}>
+          defaultZoom={center.zoom}
+          center={userPosition}
+          yesIWantToUseGoogleMapApiInternals
+          onGoogleApiLoaded={({ map, maps }) => apiIsLoaded(map, maps)}>
+          {userPosition && (
+            <Marker item={{}} lat={userPosition.lat} lng={userPosition.lng} />
+          )}
           {itemsToShow.map((item, i) => {
             return (
               <Marker
