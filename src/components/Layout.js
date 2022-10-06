@@ -7,6 +7,7 @@ import { lightTheme } from "../app/assets/theme/lightTheme";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { setLayoutTheme } from "../modules/user/actions";
+import Navbar from "./NavBar/NavBar";
 
 const Layout = (props) => {
   const { children, layoutTheme, updateLayoutTheme } = props;
@@ -18,16 +19,15 @@ const Layout = (props) => {
 
   const themeToggler = () => {
     const mode = layoutTheme === THEMES.LIGHT ? THEMES.DARK : THEMES.LIGHT;
-    setLayoutTheme(mode);
+    updateLayoutTheme(mode);
     window.localStorage.setItem(LOCAL_STORAGE.THEME, mode);
   };
   const themeMode = layoutTheme === THEMES.DARK ? darkTheme : lightTheme;
   return (
     <ThemeProvider theme={themeMode}>
-      <LayoutWrapper>
-        <GlobalStyles />
-        {children}
-      </LayoutWrapper>
+      <GlobalStyles />
+      <Navbar themeToggler={themeToggler} />
+      <LayoutWrapper>{children}</LayoutWrapper>
     </ThemeProvider>
   );
 };
@@ -52,5 +52,5 @@ const LayoutWrapper = styled.div`
   width: 100%;
   max-width: 190rem;
   padding: 4rem 2rem 2rem;
-  margin: 0 auto;
+  margin: 10rem auto;
 `;

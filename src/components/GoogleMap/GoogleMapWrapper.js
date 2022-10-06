@@ -27,7 +27,6 @@ const GoogleMapWrapper = (props) => {
       }
     );
   };
-  console.log(userPosition);
   return (
     <MapsWrapper>
       {itemsToShow.length > 0 && (
