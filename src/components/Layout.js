@@ -52,5 +52,5 @@ const LayoutWrapper = styled.div`
   width: 100%;
   max-width: 190rem;
   padding: 4rem 2rem 2rem;
-  margin: 10rem auto;
+  margin: 6rem auto;
 `;
