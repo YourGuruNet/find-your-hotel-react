@@ -18,15 +18,14 @@ import Review from "../Review";
 import { motion } from "framer-motion";
 
 const SearchListItem = ({ hotel }) => {
-  const { title, images, filters, labelsList } = hotel;
-  const { address, city } = hotel.location;
+  const { title, pictureUrl, filters, labelsList, adress, city } = hotel;
   return (
     <motion.div
       initial={{ x: -50, opacity: 0 }}
       whileInView={{ x: 0, opacity: 1 }}
       transition={{ duration: 0.5, delay: 0.2 }}>
       <SearchListItemWrapper>
-        <SearchItemImage src={images?.mainPicture} />
+        <SearchItemImage src={pictureUrl} />
         <FavoriteButtonsContainer>
           <FavoriteButton />
         </FavoriteButtonsContainer>
@@ -34,7 +33,7 @@ const SearchListItem = ({ hotel }) => {
           <SearchItemTitle>{title}</SearchItemTitle>
           <SearchItemAddress>
             <LocationIcon width={1.1} height={1.4} />
-            {`${address}, ${city}`}
+            {`${adress}, ${city}`}
           </SearchItemAddress>
           <SearchItemFilters>{filters?.join(" • ")}</SearchItemFilters>
           <LabelsRow>
