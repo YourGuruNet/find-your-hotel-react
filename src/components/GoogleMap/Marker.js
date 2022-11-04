@@ -2,11 +2,11 @@ import React from "react";
 import styled from "styled-components";
 
 const Marker = (props) => {
-  const { title, images } = props.item;
+  const { title, logo } = props.item;
   return (
     <MarkerWrapper>
       <div className="marker_figure">
-        <img className="marker_logo" src={images?.logo} alt={title} />
+        <img className="marker_logo" src={logo} alt={title} />
         <div className="arrow_down" />
       </div>
     </MarkerWrapper>
