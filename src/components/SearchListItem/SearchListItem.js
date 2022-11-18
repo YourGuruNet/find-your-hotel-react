@@ -18,7 +18,9 @@ import Review from "../Review";
 import { motion } from "framer-motion";
 
 const SearchListItem = ({ hotel }) => {
-  const { title, pictureUrl, filters, labelsList, adress, city } = hotel;
+  const { title, pictureUrl, filtersList, labelsList, address, city } = hotel;
+  const filters = filtersList.split(",");
+  const labels = labelsList.split(",");
   return (
     <motion.div
       initial={{ x: -50, opacity: 0 }}
@@ -33,11 +35,11 @@ const SearchListItem = ({ hotel }) => {
           <SearchItemTitle>{title}</SearchItemTitle>
           <SearchItemAddress>
             <LocationIcon width={1.1} height={1.4} />
-            {`${adress}, ${city}`}
+            {`${address}, ${city}`}
           </SearchItemAddress>
           <SearchItemFilters>{filters?.join(" • ")}</SearchItemFilters>
           <LabelsRow>
-            {map(labelsList, (label) => {
+            {map(labels, (label) => {
               return <LabelItem label={label}>{label}</LabelItem>;
             })}
           </LabelsRow>
