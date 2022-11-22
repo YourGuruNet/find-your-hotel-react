@@ -48,7 +48,6 @@ const LayoutWrapper = styled.div`
   transition: all 0.5s linear;
   background: ${({ theme }) => theme.body};
   color: ${({ theme }) => theme.text};
-  min-height: 100vh;
   width: 100%;
   max-width: 190rem;
   padding: 4rem 2rem 2rem;

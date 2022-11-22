@@ -33,7 +33,7 @@ const Navbar = (props) => {
       <Navigation>
         <LeftContainer>
           <Logo width={5} height={5} />
-          <SearchBar />
+          <SearchBar placeholder="Find where to stay..." />
         </LeftContainer>
         <ToggleSwitch action={themeToggler} />
       </Navigation>
@@ -87,8 +87,16 @@ const SearchBar = styled.input`
   min-width: 40rem;
   height: 5rem;
   background: ${({ theme }) => theme.body};
+  color: ${({ theme }) => theme.text};
+  font-weight: 400;
+  font-size: 1.5rem;
   border-radius: 10px;
+  padding: 1rem;
   outline: none;
   border: 0;
   outline: 0;
+  ::placeholder {
+    color: ${({ theme }) => theme.secondaryText};
+    opacity: 1;
+  }
 `;

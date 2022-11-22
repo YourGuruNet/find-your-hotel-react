@@ -75,11 +75,16 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, null)(GoogleMapWrapper);
 
 const MapsWrapper = styled.div`
-  width: 100%;
-  min-height: 65vh;
-  max-height: 65vh;
+  width: 50%;
+  height: 100vh;
   overflow: hidden;
   border-radius: 2rem;
+  @media screen and (max-width: 1000px) {
+    height: 60vh;
+    margin-bottom: 2rem;
+    max-width: 100%;
+    width: 100%;
+  }
 `;
 const MapsWrapperSkeleton = styled.div`
   overflow: hidden;

@@ -1,12 +1,18 @@
 import styled from "styled-components";
 
 export const SearchListWrapper = styled.section`
-  min-width: 75rem;
-  max-height: 65vh;
+  max-width: 50%;
+  width: 50%;
+  max-height: 100vh;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
   margin-right: 6rem;
+
+  @media screen and (max-width: 1000px) {
+    max-width: 100%;
+    width: 100%;
+  }
 
   /* width */
   ::-webkit-scrollbar {
