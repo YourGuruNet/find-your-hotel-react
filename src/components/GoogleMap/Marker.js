@@ -1,14 +1,17 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+import UserLocation from "../../app/assets/svg/UserLocation";
 
 const Marker = (props) => {
-  const { title, logo } = props.item;
+  const { title, logo, isUserLocation = false } = props.item;
   return (
     <MarkerWrapper>
-      <div className="marker_figure">
-        <img className="marker_logo" src={logo} alt={title} />
-        <div className="arrow_down" />
-      </div>
+      {isUserLocation && <UserLocation height={5} width={5} />}
+      {!isUserLocation && (
+        <div>
+          <img className="marker_logo" src={logo} alt={title} />
+        </div>
+      )}
     </MarkerWrapper>
   );
 };

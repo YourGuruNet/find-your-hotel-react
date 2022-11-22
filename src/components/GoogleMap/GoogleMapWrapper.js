@@ -41,7 +41,11 @@ const GoogleMapWrapper = (props) => {
           yesIWantToUseGoogleMapApiInternals
           onGoogleApiLoaded={({ map, maps }) => apiIsLoaded(map, maps)}>
           {userPosition && (
-            <Marker item={{}} lat={userPosition.lat} lng={userPosition.lng} />
+            <Marker
+              item={{ isUserLocation: true }}
+              lat={userPosition.lat}
+              lng={userPosition.lng}
+            />
           )}
           {itemsToShow.map((item, i) => {
             return (

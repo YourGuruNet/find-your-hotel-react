@@ -9,7 +9,6 @@ export const apiCallWrapper = (type, url) => {
     await axios
       .get(`${apiUrl}${url}`)
       .then((response) => {
-        debugger;
         dispatch({
           type: type,
           payload: response.data,
