@@ -6,7 +6,7 @@ const Blob = ({ width, height, rotate }) => {
     <Icon width={width} height={height}>
       <motion.div
         animate={{ rotate: rotate }}
-        transition={{ ease: "linear", duration: 1 }}>
+        transition={{ ease: "linear", duration: 2 }}>
         <svg
           id="sw-js-blob-svg"
           viewBox="0 0 100 100"
