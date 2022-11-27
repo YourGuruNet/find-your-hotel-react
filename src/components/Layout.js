@@ -52,4 +52,5 @@ const LayoutWrapper = styled.div`
   max-width: 190rem;
   padding: 4rem 2rem 2rem;
   margin: 6rem auto;
+  overflow: hidden;
 `;

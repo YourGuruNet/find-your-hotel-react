@@ -9,7 +9,7 @@ export const SearchListWrapper = styled.section`
   flex-direction: column;
   margin-right: 6rem;
 
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: ${({ theme }) => theme.smallScreen}) {
     max-width: 100%;
     width: 100%;
   }

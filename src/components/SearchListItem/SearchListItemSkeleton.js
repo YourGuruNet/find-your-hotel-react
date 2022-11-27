@@ -22,9 +22,6 @@ const SearchListItemSkeleton = () => {
     <SkeletonLayout>
       <SearchListItemWrapper>
         <Skeleton height={180} wrapper={SearchItemImageSkeleton} />
-        <FavoriteButtonsContainer>
-          <Skeleton wrapper={FavoriteIconSkeleton} width={50} height={49} />
-        </FavoriteButtonsContainer>
         <TextColumn>
           <Skeleton wrapper={SearchItemTitle} />
           <Skeleton wrapper={SearchItemAddress} />
@@ -37,7 +34,6 @@ const SearchListItemSkeleton = () => {
             })}
           </LabelsRow>
           <Skeleton wrapper={SearchItemAddress} />
-          <Skeleton width={50} height={30} wrapper={PriceSkeleton} />
         </TextColumn>
       </SearchListItemWrapper>
     </SkeletonLayout>

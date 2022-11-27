@@ -35,7 +35,8 @@ export const SearchItemTitle = styled.h2`
 
 export const TextColumn = styled.div`
   width: 100%;
-  max-width: 39rem;
+  padding-right: 5rem;
+  padding-bottom: 4rem;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -112,12 +113,12 @@ export const Price = styled.h2`
   font-weight: 700;
   line-height: 2.8rem;
   position: absolute;
-  right: -5.5rem;
-  bottom: 0;
+  right: 3rem;
+  bottom: 2rem;
 `;
 
 export const PriceSkeleton = styled.div`
   position: absolute;
-  right: -6.7rem;
-  bottom: 0;
+  right: 3rem;
+  bottom: 2rem;
 `;

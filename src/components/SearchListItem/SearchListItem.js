@@ -44,8 +44,8 @@ const SearchListItem = ({ hotel }) => {
             })}
           </LabelsRow>
           <Review />
-          <Price>$ 2,440</Price>
         </TextColumn>
+        <Price>$ 2,440</Price>
       </SearchListItemWrapper>
     </motion.div>
   );

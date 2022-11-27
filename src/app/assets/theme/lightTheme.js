@@ -1,6 +1,7 @@
 import { colorPalette } from "./colorPalette";
 
 export const lightTheme = {
+  // Colors
   body: colorPalette.lightGray,
   text: colorPalette.darkGray,
   secondaryText: colorPalette.lightGray_2,
@@ -13,4 +14,7 @@ export const lightTheme = {
   lightGreen: colorPalette.lightGreen,
   darkRed: colorPalette.darkRed,
   lightRed: colorPalette.lightRed,
+
+  //Screens
+  smallScreen: "1300px",
 };

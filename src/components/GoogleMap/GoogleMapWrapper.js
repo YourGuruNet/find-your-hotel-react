@@ -79,7 +79,7 @@ const MapsWrapper = styled.div`
   height: 100vh;
   overflow: hidden;
   border-radius: 2rem;
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: ${({ theme }) => theme.smallScreen}) {
     height: 60vh;
     margin-bottom: 2rem;
     max-width: 100%;

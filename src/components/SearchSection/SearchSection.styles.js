@@ -7,7 +7,7 @@ export const SearchSectionLayout = styled.div`
   flex-direction: row;
   overflow: hidden;
 
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: ${({ theme }) => theme.smallScreen}) {
     flex-direction: column-reverse;
   }
 `;
