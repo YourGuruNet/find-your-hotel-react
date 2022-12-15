@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const SearchListWrapper = styled.section`
   max-width: 50%;
   width: 50%;
-  max-height: 100vh;
   overflow-y: auto;
   display: flex;
   flex-direction: column;

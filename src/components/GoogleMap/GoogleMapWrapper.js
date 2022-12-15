@@ -61,7 +61,7 @@ const GoogleMapWrapper = (props) => {
       )}
       {!itemsToShow.length && (
         <SkeletonLayout>
-          <Skeleton wrapper={MapsWrapperSkeleton} height={620} />
+          <Skeleton wrapper={MapsWrapperSkeleton} height={700} />
         </SkeletonLayout>
       )}
     </MapsWrapper>
@@ -76,7 +76,7 @@ export default connect(mapStateToProps, null)(GoogleMapWrapper);
 
 const MapsWrapper = styled.div`
   width: 50%;
-  height: 100vh;
+
   overflow: hidden;
   border-radius: 2rem;
   @media screen and (max-width: ${({ theme }) => theme.smallScreen}) {
@@ -89,4 +89,6 @@ const MapsWrapper = styled.div`
 const MapsWrapperSkeleton = styled.div`
   overflow: hidden;
   border-radius: 2rem;
+  height: 80rem;
+  max-height: 100vh;
 `;
