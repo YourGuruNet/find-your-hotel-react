@@ -1,11 +1,24 @@
 import React from "react";
 import "./app.css";
-import Home from "../pages/Home";
+import { Routes, Route } from "react-router-dom";
+import { PUBLIC_ROUTES } from "./constants/constants";
+import { map } from "lodash";
 
-class App extends React.Component {
-  render() {
-    return <Home />;
-  }
-}
+const App = () => {
+  return (
+    <Routes>
+      {map(PUBLIC_ROUTES, (route, index) => {
+        return (
+          <Route
+            key={index}
+            exact={route.exact}
+            path={route.path}
+            element={route.component}
+          />
+        );
+      })}
+    </Routes>
+  );
+};
 
 export default App;
