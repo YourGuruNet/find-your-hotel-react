@@ -8,9 +8,16 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 import { setLayoutTheme } from "../modules/user/actions";
 import Navbar from "./NavBar/NavBar";
+import Vector from "../app/assets/svg/Vector";
 
 const Layout = (props) => {
-  const { children, layoutTheme, updateLayoutTheme } = props;
+  const {
+    children,
+    layoutTheme,
+    updateLayoutTheme,
+    isLogin = false,
+    showVector,
+  } = props;
 
   useEffect(() => {
     const localTheme = window.localStorage.getItem(LOCAL_STORAGE.THEME);
@@ -26,8 +33,9 @@ const Layout = (props) => {
   return (
     <ThemeProvider theme={themeMode}>
       <GlobalStyles />
-      <Navbar themeToggler={themeToggler} />
+      {!isLogin && <Navbar themeToggler={themeToggler} />}
       <LayoutWrapper>{children}</LayoutWrapper>
+      {showVector && <Vector />}
     </ThemeProvider>
   );
 };
@@ -53,4 +61,5 @@ const LayoutWrapper = styled.div`
   padding: 4rem 2rem 2rem;
   margin: 6rem auto;
   overflow: hidden;
+  position: relative;
 `;

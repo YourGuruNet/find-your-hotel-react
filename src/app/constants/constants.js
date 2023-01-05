@@ -1,5 +1,5 @@
 import Home from "../../pages/Home";
-import Login from "../../pages/Login";
+import Login from "../../pages/Login/Login";
 
 export const center = {
   center: {
