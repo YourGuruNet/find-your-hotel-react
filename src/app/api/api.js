@@ -24,6 +24,34 @@ export const apiCallWrapper = (type, url) => {
   };
 };
 
+export const apiCallWrapperPost = (type, url, modal, callBack = null) => {
+  return async function (dispatch) {
+    await axios
+      .post(`${apiUrl}${url}`, modal)
+      .then((response) => {
+        if (callBack !== null) {
+          callBack();
+        }
+        dispatch({
+          type: type,
+          payload: response.data,
+        });
+      })
+      .catch((response) => {
+        console.log(response);
+        dispatch({
+          type: userActions.SET_ERROR,
+          payload: response,
+        });
+      });
+  };
+};
+
 export const collectionList = {
+  // Hotels
   getHotelsList: "hotels",
+
+  // User
+  setLogin: "Authentication/Login",
+  addUser: "Authentication/AddUser",
 };

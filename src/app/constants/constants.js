@@ -1,5 +1,6 @@
 import Home from "../../pages/Home";
-import Login from "../../pages/Login/Login";
+import Login from "../../pages/LoginRegistration/Login";
+import Registration from "../../pages/LoginRegistration/Registration";
 
 export const center = {
   center: {
@@ -21,4 +22,9 @@ export const LOCAL_STORAGE = {
 export const PUBLIC_ROUTES = {
   Home: { exact: true, path: "/", component: <Home /> },
   LoginPage: { exact: true, path: "/login", component: <Login /> },
+  RegistrationPage: {
+    exact: true,
+    path: "/registration",
+    component: <Registration isRegistration />,
+  },
 };

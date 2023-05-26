@@ -3,10 +3,10 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 
 const Input = (props) => {
-  const { placeholder, onChange } = props;
+  const { placeholder, onChange, value } = props;
   return (
     <motion.div whileHover={{ scale: 1.1 }}>
-      <InputField placeholder={placeholder} onChange={(e) => onChange(e)} />
+      <InputField value={value} placeholder={placeholder} onChange={onChange} />
     </motion.div>
   );
 };
@@ -26,6 +26,8 @@ const InputField = styled.input`
   outline: none;
   border: 0;
   outline: 0;
+  position: relative;
+  z-index: 4;
   ::placeholder {
     color: ${({ theme }) => theme.secondaryText};
     opacity: 1;

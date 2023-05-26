@@ -24,4 +24,6 @@ const Button = styled.button`
   color: ${({ theme }) => theme.secondaryText};
   height: 4rem;
   border: none;
+  position: relative;
+  z-index: 4;
 `;

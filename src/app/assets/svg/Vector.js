@@ -18,8 +18,11 @@ const Vector = () => {
 export default Vector;
 
 const VectorWrapper = styled.div`
+  position: fixed;
+  bottom: 0;
   width: 100%;
   display: block;
-  position: absolute;
-  bottom: 0;
+  svg {
+    display: block;
+  }
 `;

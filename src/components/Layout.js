@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { ThemeProvider } from "styled-components";
 import { LOCAL_STORAGE, THEMES } from "../app/constants/constants";
 import { darkTheme } from "../app/assets/theme/darkTheme";
@@ -34,8 +34,10 @@ const Layout = (props) => {
     <ThemeProvider theme={themeMode}>
       <GlobalStyles />
       {!isLogin && <Navbar themeToggler={themeToggler} />}
-      <LayoutWrapper>{children}</LayoutWrapper>
-      {showVector && <Vector />}
+      <FlexWrapper>
+        <LayoutWrapper>{children}</LayoutWrapper>
+        {showVector && <Vector />}
+      </FlexWrapper>
     </ThemeProvider>
   );
 };
@@ -59,7 +61,13 @@ const LayoutWrapper = styled.div`
   width: 100%;
   max-width: 190rem;
   padding: 4rem 2rem 2rem;
-  margin: 6rem auto;
+  margin: 6rem auto 0;
   overflow: hidden;
-  position: relative;
+`;
+
+const FlexWrapper = styled.div`
+  align-items: space-between;
+  display: flex;
+  flex-direction: column;
+  z-index: 3;
 `;
