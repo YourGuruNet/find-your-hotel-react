@@ -19,8 +19,8 @@ import { motion } from "framer-motion";
 
 const SearchListItem = ({ hotel }) => {
   const { title, pictureUrl, filtersList, labelsList, address, city } = hotel;
-  const filters = filtersList.split(",");
-  const labels = labelsList.split(",");
+  const filters = filtersList?.split(",");
+  const labels = labelsList?.split(",");
   return (
     <motion.div
       initial={{ x: -50, opacity: 0 }}
