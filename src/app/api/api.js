@@ -4,9 +4,14 @@ import axios from "axios";
 export const GOOGLE_MAPS_API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 export const apiUrl = "https://localhost:5001/api/";
 
+const instance = axios.create({
+  headers: { "Content-Type": "application/json" },
+  withCredentials: true,
+});
+
 export const apiCallWrapper = (type, url) => {
   return async function (dispatch) {
-    await axios
+    await instance
       .get(`${apiUrl}${url}`)
       .then((response) => {
         dispatch({
@@ -26,11 +31,11 @@ export const apiCallWrapper = (type, url) => {
 
 export const apiCallWrapperPost = (type, url, modal, callBack = null) => {
   return async function (dispatch) {
-    await axios
+    await instance
       .post(`${apiUrl}${url}`, modal)
       .then((response) => {
         if (callBack !== null) {
-          callBack();
+          callBack(response);
         }
         dispatch({
           type: type,

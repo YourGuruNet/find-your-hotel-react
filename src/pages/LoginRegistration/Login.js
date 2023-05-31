@@ -11,10 +11,16 @@ import {
   LoginTile,
   LoginWrapper,
 } from "./LoginRegistration.styles";
+import { useNavigate } from "react-router-dom";
+import LocalStorageWrapper, {
+  LocalStorageKeys,
+} from "../../app/Helpers/LocalStorageWrapper";
 
 const Login = (props) => {
+  const navigate = useNavigate();
   const { login } = props;
   const [loginData, setLoginData] = useState({ email: "", password: "" });
+  const [error, setError] = useState(false);
   const inputFields = [
     {
       placeholder: "email",
@@ -27,6 +33,15 @@ const Login = (props) => {
       onChange: (e) => setLoginData({ ...loginData, password: e.target.value }),
     },
   ];
+
+  const loginAction = (response) => {
+    if (response.data.success) {
+      LocalStorageWrapper.set(LocalStorageKeys.TOKEN, response.data.token);
+      navigate("/");
+    } else {
+      setError(true);
+    }
+  };
 
   return (
     <Layout isLogin showVector>
@@ -46,7 +61,11 @@ const Login = (props) => {
             </MarginBottom>
           );
         })}
-        <SimpleButton title="Login" onClick={() => login(loginData)} />
+        <SimpleButton
+          title="Login"
+          onClick={() => login(loginData, loginAction)}
+        />
+        {error && <LoginSubtitle>Login failed!</LoginSubtitle>}
       </LoginWrapper>
     </Layout>
   );
@@ -54,7 +73,8 @@ const Login = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    login: (loginData) => dispatch(getLoginToken(loginData)),
+    login: (loginData, callBack) =>
+      dispatch(getLoginToken(loginData, callBack)),
   };
 };
 

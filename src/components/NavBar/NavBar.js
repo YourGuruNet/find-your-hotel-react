@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import styled, { css } from "styled-components";
 import Logo from "../../app/assets/svg/Logo";
 import ToggleSwitch from "../buttons/ToggleSwitch";
+import LocalStorageWrapper, {
+  LocalStorageKeys,
+} from "../../app/Helpers/LocalStorageWrapper";
 
 const Navbar = (props) => {
   const { themeToggler } = props;
@@ -35,6 +38,10 @@ const Navbar = (props) => {
           <Logo width={5} height={5} />
           <SearchBar placeholder="Find where to stay..." />
         </LeftContainer>
+        <button
+          onClick={() => LocalStorageWrapper.remove(LocalStorageKeys.TOKEN)}>
+          Logout
+        </button>
         <ToggleSwitch action={themeToggler} />
       </Navigation>
     </NavWrapper>

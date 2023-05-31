@@ -16,11 +16,12 @@ export const setLayoutTheme = (theme) => {
   };
 };
 
-export const getLoginToken = (model) => {
+export const getLoginToken = (model, callBack) => {
   return apiCallWrapperPost(
     userActions.SET_TOKEN,
     collectionList.setLogin,
-    model
+    model,
+    callBack
   );
 };
 
