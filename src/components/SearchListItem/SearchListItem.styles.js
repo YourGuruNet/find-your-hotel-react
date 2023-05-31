@@ -8,6 +8,7 @@ export const SearchListItemWrapper = styled.section`
   background-color: ${({ theme }) => theme.lightBackground};
   filter: drop-shadow(${({ theme }) => theme.shadow});
   border-radius: 1rem;
+  position: relative;
 `;
 
 export const SearchItemImage = styled.img`
