@@ -35,7 +35,7 @@ const Navbar = (props) => {
 
   const logOut = () => {
     LocalStorageWrapper.remove(LocalStorageKeys.TOKEN);
-    navigate("/");
+    navigate("/login");
   };
 
   return (
