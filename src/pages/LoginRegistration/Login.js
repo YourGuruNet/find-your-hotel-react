@@ -34,10 +34,12 @@ const Login = (props) => {
     },
   ];
 
-  const loginAction = (response) => {
+  const loginAction = async (response) => {
     if (response.data.success) {
-      LocalStorageWrapper.set(LocalStorageKeys.TOKEN, response.data.token);
-      navigate("/");
+      await new Promise(() => {
+        LocalStorageWrapper.set(LocalStorageKeys.TOKEN, response.data.token);
+        navigate("/");
+      });
     } else {
       setError(true);
     }

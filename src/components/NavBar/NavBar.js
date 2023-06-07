@@ -5,8 +5,10 @@ import ToggleSwitch from "../buttons/ToggleSwitch";
 import LocalStorageWrapper, {
   LocalStorageKeys,
 } from "../../app/Helpers/LocalStorageWrapper";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = (props) => {
+  const navigate = useNavigate();
   const { themeToggler } = props;
   const [show, setShow] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -31,6 +33,11 @@ const Navbar = (props) => {
     }
   }, [lastScrollY]);
 
+  const logOut = () => {
+    LocalStorageWrapper.remove(LocalStorageKeys.TOKEN);
+    navigate("/");
+  };
+
   return (
     <NavWrapper show={show}>
       <Navigation>
@@ -38,10 +45,7 @@ const Navbar = (props) => {
           <Logo width={5} height={5} />
           <SearchBar placeholder="Find where to stay..." />
         </LeftContainer>
-        <button
-          onClick={() => LocalStorageWrapper.remove(LocalStorageKeys.TOKEN)}>
-          Logout
-        </button>
+        <button onClick={() => logOut()}>Logout</button>
         <ToggleSwitch action={themeToggler} />
       </Navigation>
     </NavWrapper>
