@@ -1,10 +1,11 @@
 import { MarginBottom } from "../../app/assets/theme/GlobalCss";
 import SimpleButton from "../../components/buttons/SimpleButton";
 import Input from "../../components/Input/Input";
-import { checkUser } from "../../modules/user/actions";
+import { changePassword, checkUser } from "../../modules/user/actions";
 import {
   LoginSubtitle,
   LoginTile,
+  LoginTileSuccess,
   LoginWrapper,
 } from "./LoginRegistration.styles";
 import { toast } from "react-toastify";
@@ -25,7 +26,8 @@ const ChangePassword = (props) => {
   const [key, setKey] = useState("");
   const [user, setUser] = useState("");
   const [loading, setLoading] = useState(true);
-  const { checkUser } = props;
+  const [passwordChanged, setPasswordChanged] = useState(false);
+  const { checkUser, changePassword } = props;
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
@@ -62,10 +64,27 @@ const ChangePassword = (props) => {
     }
   };
 
+  const changePasswordCallBack = async (response) => {
+    if (response.data.success) {
+      setPasswordChanged(true);
+    } else {
+      toast.error(response.data.message);
+    }
+  };
+
   return (
     <Layout isLogin showVector={!loading}>
+      {passwordChanged && (
+        <LoginWrapper>
+          <LoginTileSuccess>Password changed successfully!</LoginTileSuccess>
+          <SimpleButton
+            title="Go to login"
+            onClick={() => navigate("/login")}
+          />
+        </LoginWrapper>
+      )}
       {loading && <Loader />}
-      {!loading && (
+      {!loading && !passwordChanged && (
         <LoginWrapper>
           <LoginTile>Change password!</LoginTile>
           <LoginSubtitle>
@@ -82,7 +101,10 @@ const ChangePassword = (props) => {
               </MarginBottom>
             );
           })}
-          <SimpleButton title="Save" />
+          <SimpleButton
+            title="Save"
+            onClick={() => changePassword(loginData, changePasswordCallBack)}
+          />
         </LoginWrapper>
       )}
     </Layout>
@@ -92,6 +114,8 @@ const ChangePassword = (props) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     checkUser: (model, callBack) => dispatch(checkUser(model, callBack)),
+    changePassword: (model, callBack) =>
+      dispatch(changePassword(model, callBack)),
   };
 };
 

@@ -10,6 +10,9 @@ import { setLayoutTheme } from "../modules/user/actions";
 import Navbar from "./NavBar/NavBar";
 import Vector from "../app/assets/svg/Vector";
 import Toast from "./Toast";
+import LocalStorageWrapper, {
+  LocalStorageKeys,
+} from "../app/Helpers/LocalStorageWrapper";
 
 const Layout = (props) => {
   const {
@@ -21,14 +24,14 @@ const Layout = (props) => {
   } = props;
 
   useEffect(() => {
-    const localTheme = window.localStorage.getItem(LOCAL_STORAGE.THEME);
+    const localTheme = LocalStorageWrapper.get(LocalStorageKeys.THEME);
     localTheme && updateLayoutTheme(THEMES.DARK);
   }, []);
 
   const themeToggler = () => {
     const mode = layoutTheme === THEMES.LIGHT ? THEMES.DARK : THEMES.LIGHT;
     updateLayoutTheme(mode);
-    window.localStorage.setItem(LOCAL_STORAGE.THEME, mode);
+    LocalStorageWrapper.set(LocalStorageKeys.THEME, mode);
   };
   const themeMode = layoutTheme === THEMES.DARK ? darkTheme : lightTheme;
   return (

@@ -6,6 +6,7 @@ export const userActions = {
   SET_TOKEN: "SET_TOKEN",
   SET_NEW_ACCOUNT: "SET_NEW_ACCOUNT",
   CHECK_USER: "CHECK_USER",
+  CHANGE_PASSWORD: "CHANGE_PASSWORD",
 };
 
 export const setLayoutTheme = (theme) => {
@@ -48,6 +49,15 @@ export const checkUser = (model, callBack) => {
   return apiCallWrapperPost(
     userActions.CHECK_USER,
     collectionList.checkUser,
+    model,
+    callBack
+  );
+};
+
+export const changePassword = (model, callBack) => {
+  return apiCallWrapperPost(
+    userActions.CHECK_USER,
+    collectionList.changePassword,
     model,
     callBack
   );

@@ -22,10 +22,6 @@ export const THEMES = {
   DARK: "dark",
 };
 
-export const LOCAL_STORAGE = {
-  THEME: "theme",
-};
-
 export const PUBLIC_ROUTES = {
   LoginPage: { exact: true, path: "/login", component: <Login /> },
   ChangePasswordPage: {

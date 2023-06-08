@@ -1,5 +1,6 @@
 export const LocalStorageKeys = {
   TOKEN: "token",
+  THEME: "theme",
 };
 
 const LocalStorageWrapper = {

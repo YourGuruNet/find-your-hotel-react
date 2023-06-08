@@ -1,10 +1,12 @@
-import { THEMES } from "../../app/constants/constants";
+import LocalStorageWrapper, {
+  LocalStorageKeys,
+} from "../../app/Helpers/LocalStorageWrapper";
 import { createReducer } from "../rootReducer";
 import { userActions } from "./actions";
 
 const initialState = {
   preferences: {
-    layoutTheme: THEMES.LIGHT,
+    layoutTheme: LocalStorageWrapper.get(LocalStorageKeys.THEME),
   },
 };
 

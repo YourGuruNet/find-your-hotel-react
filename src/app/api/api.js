@@ -71,4 +71,5 @@ export const collectionList = {
   addUser: "Authentication/AddUser",
   setNewPasswordLink: "Authentication/SetNewPasswordLink",
   checkUser: "Authentication/CheckUser",
+  changePassword: "Authentication/ChangePassword",
 };
