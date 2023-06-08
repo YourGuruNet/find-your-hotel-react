@@ -1,7 +1,7 @@
 import { MarginBottom } from "../../app/assets/theme/GlobalCss";
 import SimpleButton from "../../components/buttons/SimpleButton";
 import Input from "../../components/Input/Input";
-import { checkUser, generatePasswordLink } from "../../modules/user/actions";
+import { checkUser } from "../../modules/user/actions";
 import {
   LoginSubtitle,
   LoginTile,
