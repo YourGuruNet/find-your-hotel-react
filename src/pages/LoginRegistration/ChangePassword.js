@@ -82,10 +82,7 @@ const ChangePassword = (props) => {
               </MarginBottom>
             );
           })}
-          <SimpleButton
-            title="Save"
-            // onClick={() => generatePasswordLink(loginData, resetCallBack)}
-          />
+          <SimpleButton title="Save" />
         </LoginWrapper>
       )}
     </Layout>
