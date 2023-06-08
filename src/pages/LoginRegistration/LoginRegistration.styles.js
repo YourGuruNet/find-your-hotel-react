@@ -25,3 +25,12 @@ export const LoginSubtitle = styled.p`
   line-height: 2rem;
   margin-bottom: 2rem;
 `;
+
+export const LogForgotPassword = styled.p`
+  font-weight: 200;
+  font-size: 1.2rem;
+  line-height: 2rem;
+  margin-top: 2rem;
+  color: ${(props) => props.theme.darkBlue};
+  cursor: pointer;
+`;

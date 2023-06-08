@@ -3,6 +3,7 @@ import axios from "axios";
 import LocalStorageWrapper, {
   LocalStorageKeys,
 } from "../Helpers/LocalStorageWrapper";
+import { toast } from "react-toastify";
 
 export const GOOGLE_MAPS_API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 export const apiUrl = "https://localhost:5001/api/";
@@ -35,14 +36,10 @@ export const apiCallWrapper = (type, url) => {
           payload: response.data,
         });
       } catch (error) {
-        console.log(error);
-        dispatch({
-          type: userActions.SET_ERROR,
-          payload: error,
-        });
+        toast.error(error.message);
       }
     } else {
-      console.log("Token not found in local storage");
+      toast.error("Token not found in local storage");
     }
   };
 };
@@ -61,11 +58,7 @@ export const apiCallWrapperPost = (type, url, modal, callBack = null) => {
         });
       })
       .catch((response) => {
-        console.log(response);
-        dispatch({
-          type: userActions.SET_ERROR,
-          payload: response,
-        });
+        toast.error(response.message);
       });
   };
 };
@@ -77,4 +70,6 @@ export const collectionList = {
   // User
   setLogin: "Authentication/Login",
   addUser: "Authentication/AddUser",
+  setNewPasswordLink: "Authentication/SetNewPasswordLink",
+  checkUser: "Authentication/CheckUser",
 };

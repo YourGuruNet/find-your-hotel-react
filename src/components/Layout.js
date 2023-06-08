@@ -9,6 +9,7 @@ import { connect } from "react-redux";
 import { setLayoutTheme } from "../modules/user/actions";
 import Navbar from "./NavBar/NavBar";
 import Vector from "../app/assets/svg/Vector";
+import Toast from "./Toast";
 
 const Layout = (props) => {
   const {
@@ -37,7 +38,8 @@ const Layout = (props) => {
       <FlexWrapper>
         <LayoutWrapper>{children}</LayoutWrapper>
         {showVector && <Vector />}
-      </FlexWrapper>
+      </FlexWrapper>{" "}
+      <Toast autoCloseInterval={5000} />
     </ThemeProvider>
   );
 };

@@ -2,11 +2,12 @@ import { useEffect } from "react";
 import Home from "../../pages/Home";
 import Login from "../../pages/LoginRegistration/Login";
 import Registration from "../../pages/LoginRegistration/Registration";
-import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import LocalStorageWrapper, {
   LocalStorageKeys,
 } from "../Helpers/LocalStorageWrapper";
+import ChangePassword from "../../pages/LoginRegistration/ChangePassword";
+import Page404 from "../../pages/Page404";
 
 export const center = {
   center: {
@@ -27,10 +28,20 @@ export const LOCAL_STORAGE = {
 
 export const PUBLIC_ROUTES = {
   LoginPage: { exact: true, path: "/login", component: <Login /> },
+  ChangePasswordPage: {
+    exact: true,
+    path: "/change-password",
+    component: <ChangePassword />,
+  },
   RegistrationPage: {
     exact: true,
     path: "/registration",
     component: <Registration isRegistration />,
+  },
+  page404: {
+    exact: true,
+    path: "/404",
+    component: <Page404 isRegistration />,
   },
 };
 

@@ -5,6 +5,7 @@ export const userActions = {
   SET_ERROR: "SET_ERROR",
   SET_TOKEN: "SET_TOKEN",
   SET_NEW_ACCOUNT: "SET_NEW_ACCOUNT",
+  CHECK_USER: "CHECK_USER",
 };
 
 export const setLayoutTheme = (theme) => {
@@ -25,10 +26,28 @@ export const getLoginToken = (model, callBack) => {
   );
 };
 
+export const generatePasswordLink = (model, callBack) => {
+  return apiCallWrapperPost(
+    userActions.SET_CHANGE_PASSWORD_LINK,
+    collectionList.setNewPasswordLink,
+    model,
+    callBack
+  );
+};
+
 export const setNewAccount = (model, callBack) => {
   return apiCallWrapperPost(
     userActions.SET_NEW_ACCOUNT,
     collectionList.addUser,
+    model,
+    callBack
+  );
+};
+
+export const checkUser = (model, callBack) => {
+  return apiCallWrapperPost(
+    userActions.CHECK_USER,
+    collectionList.checkUser,
     model,
     callBack
   );
