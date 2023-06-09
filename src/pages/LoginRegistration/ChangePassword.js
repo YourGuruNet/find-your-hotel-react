@@ -22,6 +22,7 @@ const ChangePassword = (props) => {
   const [loginData, setLoginData] = useState({
     password: "",
     repeatPassword: "",
+    key: "",
   });
   const [key, setKey] = useState("");
   const [user, setUser] = useState("");
@@ -36,7 +37,7 @@ const ChangePassword = (props) => {
       navigate("/404");
     }
 
-    setKey(key);
+    setLoginData({ ...loginData, key: key });
     checkUser({ secretKey: key }, checkUserCallBack);
   }, [location.search]);
 
@@ -48,13 +49,13 @@ const ChangePassword = (props) => {
     },
     {
       placeholder: "repeat password",
-      value: loginData.password,
+      value: loginData.repeatPassword,
       onChange: (e) =>
         setLoginData({ ...loginData, repeatPassword: e.target.value }),
     },
   ];
 
-  const checkUserCallBack = async (response) => {
+  const checkUserCallBack = (response) => {
     if (response.data.success) {
       setLoading(false);
       setUser(response.data.user);
@@ -64,11 +65,21 @@ const ChangePassword = (props) => {
     }
   };
 
-  const changePasswordCallBack = async (response) => {
+  const changePasswordCallBack = (response) => {
     if (response.data.success) {
       setPasswordChanged(true);
     } else {
       toast.error(response.data.message);
+    }
+    setLoading(false);
+  };
+
+  const handleChangePassword = () => {
+    setLoading(true);
+    if (loginData.password !== loginData.repeatPassword) {
+      toast.error("Passwords don't mach!");
+    } else {
+      changePassword(loginData, changePasswordCallBack);
     }
   };
 
@@ -101,10 +112,7 @@ const ChangePassword = (props) => {
               </MarginBottom>
             );
           })}
-          <SimpleButton
-            title="Save"
-            onClick={() => changePassword(loginData, changePasswordCallBack)}
-          />
+          <SimpleButton title="Save" onClick={() => handleChangePassword()} />
         </LoginWrapper>
       )}
     </Layout>

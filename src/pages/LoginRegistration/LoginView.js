@@ -65,11 +65,18 @@ const LoginView = (props) => {
       <SimpleButton
         title="Login"
         onClick={() => login(loginData, loginAction)}
-      />{" "}
+      />
       <TextButton
         child={
           <LogForgotPassword onClick={() => setForgotPassword(true)}>
             Forgot password?
+          </LogForgotPassword>
+        }
+      />
+      <TextButton
+        child={
+          <LogForgotPassword onClick={() => navigate("/registration")}>
+            Create new account?
           </LogForgotPassword>
         }
       />

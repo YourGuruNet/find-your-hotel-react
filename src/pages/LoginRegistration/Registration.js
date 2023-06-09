@@ -11,9 +11,12 @@ import {
   LoginTile,
   LoginWrapper,
 } from "./LoginRegistration.styles";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import Loader from "../../components/Loader";
 
 const Registration = (props) => {
+  const navigate = useNavigate();
   const { createAccount } = props;
   const [registrationData, setRegistrationData] = useState({
     email: "",
@@ -22,7 +25,8 @@ const Registration = (props) => {
     lastName: "",
     firstName: "",
   });
-  const [isRegistrationSuccess, setRegistrationSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
+
   const inputFields = [
     {
       placeholder: "First name",
@@ -59,35 +63,51 @@ const Registration = (props) => {
     },
   ];
 
-  if (isRegistrationSuccess) {
-    return <Navigate to="/Login" />;
-  }
+  const createAccountCallBack = (response) => {
+    if (response.data.success) {
+      toast.success(response.data.message);
+      setTimeout(() => {
+        navigate("/login");
+      }, 2000);
+    } else {
+      toast.error(response.data.message);
+    }
+    setLoading(false);
+  };
+
+  const handleCreateAccount = () => {
+    setLoading(true);
+    if (registrationData.password !== registrationData.repeatPassword) {
+      toast.error("Passwords don't mach!");
+      setLoading(false);
+    } else {
+      createAccount(registrationData, createAccountCallBack);
+    }
+  };
 
   return (
     <Layout isLogin showVector>
-      <LoginWrapper>
-        <LoginTile>Registration</LoginTile>
-        <LoginSubtitle>
-          Create account start managing your your bookings!
-        </LoginSubtitle>
-        {map(inputFields, (item) => {
-          return (
-            <MarginBottom value={3} key={item.placeholder}>
-              <Input
-                value={item.value}
-                placeholder={item.placeholder}
-                onChange={item.onChange}
-              />
-            </MarginBottom>
-          );
-        })}
-        <SimpleButton
-          title="Login"
-          onClick={() =>
-            createAccount(registrationData, () => setRegistrationSuccess(true))
-          }
-        />
-      </LoginWrapper>
+      {loading && <Loader />}
+      {!loading && (
+        <LoginWrapper>
+          <LoginTile>Registration</LoginTile>
+          <LoginSubtitle>
+            Create account start managing your your bookings!
+          </LoginSubtitle>
+          {map(inputFields, (item) => {
+            return (
+              <MarginBottom value={3} key={item.placeholder}>
+                <Input
+                  value={item.value}
+                  placeholder={item.placeholder}
+                  onChange={item.onChange}
+                />
+              </MarginBottom>
+            );
+          })}
+          <SimpleButton title="Login" onClick={() => handleCreateAccount()} />
+        </LoginWrapper>
+      )}
     </Layout>
   );
 };

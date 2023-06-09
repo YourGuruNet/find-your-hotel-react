@@ -8,7 +8,7 @@ export const LoginWrapper = styled.section`
   align-items: center;
   flex-direction: column;
   width: 100%;
-  max-width: 60rem;
+  max-width: 40rem;
   margin: 6rem auto 0;
 `;
 
