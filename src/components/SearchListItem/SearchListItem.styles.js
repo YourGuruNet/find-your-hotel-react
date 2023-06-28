@@ -25,6 +25,13 @@ export const SearchItemImageSkeleton = styled.div`
   margin-right: 2.3rem;
   overflow: hidden;
 `;
+export const NoImageWrapper = styled.div`
+  width: 20rem;
+  height: 20rem;
+  border-radius: 1rem;
+  object-fit: cover;
+  margin-right: 2.3rem;
+`;
 
 export const SearchItemTitle = styled.h2`
   font-size: 2.4rem;
@@ -82,14 +89,14 @@ export const LabelItem = styled.p`
   color: ${({ theme }) => theme.darkRed};
 
   ${(props) =>
-    props.label === "Friendly Neighborhood" &&
+    props.label.trim() === "Friendly Neighborhood" &&
     css`
       background: ${({ theme }) => theme.lightBlue};
       color: ${({ theme }) => theme.darkBlue};
     `}
 
   ${(props) =>
-    props.label === "New Building" &&
+    props.label.trim() === "New Building" &&
     css`
       background: ${({ theme }) => theme.lightGreen};
       color: ${({ theme }) => theme.darkGreen};

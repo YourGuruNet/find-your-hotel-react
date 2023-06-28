@@ -3,6 +3,7 @@ import {
   FavoriteButtonsContainer,
   LabelItem,
   LabelsRow,
+  NoImageWrapper,
   Price,
   SearchItemAddress,
   SearchItemFilters,
@@ -16,9 +17,22 @@ import FavoriteButton from "../buttons/FavoriteButton";
 import { map } from "lodash";
 import Review from "../Review";
 import { motion } from "framer-motion";
+import NoHotelImage from "../../app/assets/svg/NoHotelImage";
+import { useState } from "react";
+import Loader from "../Loader";
 
 const SearchListItem = ({ hotel }) => {
   const { title, pictureUrl, filtersList, labelsList, address, city } = hotel;
+  const [imageError, setImageError] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  const handleImageLoad = () => {
+    setLoading(false);
+  };
+  const handleImageError = () => {
+    setLoading(false);
+    setImageError(true);
+  };
   const filters = filtersList?.split(",");
   const labels = labelsList?.split(",");
   return (
@@ -27,7 +41,23 @@ const SearchListItem = ({ hotel }) => {
       whileInView={{ x: 0, opacity: 1 }}
       transition={{ duration: 0.5, delay: 0.2 }}>
       <SearchListItemWrapper>
-        <SearchItemImage src={pictureUrl} />
+        {imageError && (
+          <NoImageWrapper>
+            <NoHotelImage width={18} height={18} />
+          </NoImageWrapper>
+        )}
+        {loading && (
+          <NoImageWrapper>
+            <Loader />
+          </NoImageWrapper>
+        )}
+        {!imageError && (
+          <SearchItemImage
+            src={pictureUrl}
+            onError={handleImageError}
+            onLoad={handleImageLoad}
+          />
+        )}
         <FavoriteButtonsContainer>
           <FavoriteButton />
         </FavoriteButtonsContainer>
