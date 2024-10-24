@@ -1,4 +1,7 @@
 import { apiCallWrapperPost, collectionList } from "../../app/api/api";
+import { toast } from "react-toastify";
+import userpool from "../../aws/userpool";
+import { AuthenticationDetails, CognitoUser } from "amazon-cognito-identity-js";
 
 export const userActions = {
   SET_LAYOUT_THEME: "SET_LAYOUT_THEME",
@@ -18,13 +21,35 @@ export const setLayoutTheme = (theme) => {
   };
 };
 
-export const getLoginToken = (model, callBack) => {
-  return apiCallWrapperPost(
-    userActions.SET_TOKEN,
-    collectionList.setLogin,
-    model,
-    callBack
-  );
+export const login = (model, callBack) => {
+  return new Promise((resolve, reject) => {
+    const user = new CognitoUser({
+      Username: model.email,
+      Pool: userpool,
+    });
+
+    const authDetails = new AuthenticationDetails({
+      Username: model.email,
+      Password: model.password,
+    });
+
+    user.authenticateUser(authDetails, {
+      onSuccess: (result) => {
+        callBack("/");
+        resolve(result);
+      },
+      newPasswordRequired: (userAttributes) => {
+        callBack("/change-password", authDetails);
+
+        toast.warning("You need to create new password");
+        resolve({ user, userAttributes });
+      },
+      onFailure: (err) => {
+        toast.error("Login failed!");
+        reject(err);
+      },
+    });
+  });
 };
 
 export const generatePasswordLink = (model, callBack) => {
@@ -54,11 +79,45 @@ export const checkUser = (model, callBack) => {
   );
 };
 
-export const changePassword = (model, callBack) => {
-  return apiCallWrapperPost(
-    userActions.CHECK_USER,
-    collectionList.changePassword,
-    model,
-    callBack
-  );
+export const changePassword = (auth, model, callBack) => {
+  return new Promise((resolve, reject) => {
+    const user = new CognitoUser({
+      Username: auth.username,
+      Pool: userpool,
+    });
+
+    const authDetails = new AuthenticationDetails({
+      Username: auth.username,
+      Password: auth.password,
+    });
+
+    user.authenticateUser(authDetails, {
+      onSuccess: (result) => {
+        callBack("/");
+        resolve(result);
+      },
+      newPasswordRequired: (userAttributes, requiredAttributes) => {
+        const writableAttributes = {};
+        requiredAttributes.forEach((attr) => {
+          if (userAttributes[attr] !== undefined) {
+            writableAttributes[attr] = userAttributes[attr];
+          }
+        });
+        user.completeNewPasswordChallenge(model.password, writableAttributes, {
+          onSuccess: (result) => {
+            callBack("/");
+            resolve(result);
+          },
+          onFailure: (err) => {
+            toast.error("Password change failed: " + err.message);
+            reject(err);
+          },
+        });
+      },
+      onFailure: (err) => {
+        toast.error("Login failed: " + err.message);
+        reject(err);
+      },
+    });
+  });
 };

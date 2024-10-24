@@ -3,11 +3,9 @@ import Home from "../../pages/Home";
 import Login from "../../pages/LoginRegistration/Login";
 import Registration from "../../pages/LoginRegistration/Registration";
 import { useNavigate } from "react-router-dom";
-import LocalStorageWrapper, {
-  LocalStorageKeys,
-} from "../Helpers/LocalStorageWrapper";
 import ChangePassword from "../../pages/LoginRegistration/ChangePassword";
 import Page404 from "../../pages/Page404";
+import userpool from "../../aws/userpool";
 
 export const center = {
   center: {
@@ -42,11 +40,11 @@ export const PUBLIC_ROUTES = {
 };
 
 const PrivateRoute = ({ component: Component }) => {
-  const token = LocalStorageWrapper.get(LocalStorageKeys.TOKEN);
+  let user = userpool.getCurrentUser();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!token) {
+    if (!user) {
       navigate("/login");
     }
   }, []);

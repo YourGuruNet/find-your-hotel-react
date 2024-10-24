@@ -1,7 +1,7 @@
 import { MarginBottom } from "../../app/assets/theme/GlobalCss";
 import SimpleButton from "../../components/buttons/SimpleButton";
 import Input from "../../components/Input/Input";
-import { getLoginToken } from "../../modules/user/actions";
+import { login } from "../../modules/user/actions";
 import {
   LogForgotPassword,
   LoginSubtitle,
@@ -9,10 +9,6 @@ import {
   LoginWrapper,
 } from "./LoginRegistration.styles";
 import { useNavigate } from "react-router-dom";
-import LocalStorageWrapper, {
-  LocalStorageKeys,
-} from "../../app/Helpers/LocalStorageWrapper";
-import { toast } from "react-toastify";
 import TextButton from "../../components/buttons/TextButton";
 import React, { useState } from "react";
 import { map } from "lodash";
@@ -20,7 +16,7 @@ import { connect } from "react-redux";
 
 const LoginView = (props) => {
   const navigate = useNavigate();
-  const { login, setForgotPassword } = props;
+  const { setForgotPassword } = props;
   const [loginData, setLoginData] = useState({ email: "", password: "" });
   const inputFields = [
     {
@@ -35,16 +31,10 @@ const LoginView = (props) => {
     },
   ];
 
-  const loginAction = async (response) => {
-    if (response.data.success) {
-      await new Promise(() => {
-        LocalStorageWrapper.set(LocalStorageKeys.TOKEN, response.data.token);
-        navigate("/");
-      });
-    } else {
-      toast.error("Login failed!");
-    }
+  const loginCallBack = (url, user = null) => {
+    navigate(url, { state: { user } });
   };
+
   return (
     <LoginWrapper>
       <LoginTile>Sign in</LoginTile>
@@ -64,7 +54,7 @@ const LoginView = (props) => {
       })}
       <SimpleButton
         title="Login"
-        onClick={() => login(loginData, loginAction)}
+        onClick={() => login(loginData, loginCallBack)}
       />
       <TextButton
         child={
@@ -84,11 +74,4 @@ const LoginView = (props) => {
   );
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    login: (loginData, callBack) =>
-      dispatch(getLoginToken(loginData, callBack)),
-  };
-};
-
-export default connect(null, mapDispatchToProps)(LoginView);
+export default LoginView;

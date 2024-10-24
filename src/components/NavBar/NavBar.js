@@ -6,6 +6,7 @@ import LocalStorageWrapper, {
   LocalStorageKeys,
 } from "../../app/Helpers/LocalStorageWrapper";
 import { useNavigate } from "react-router-dom";
+import userpool from "../../aws/userpool";
 
 const Navbar = (props) => {
   const navigate = useNavigate();
@@ -34,8 +35,11 @@ const Navbar = (props) => {
   }, [lastScrollY]);
 
   const logOut = () => {
-    LocalStorageWrapper.remove(LocalStorageKeys.TOKEN);
-    navigate("/login");
+    const user = userpool.getCurrentUser();
+    if (user) {
+      user.signOut();
+      navigate("/login");
+    }
   };
 
   return (
